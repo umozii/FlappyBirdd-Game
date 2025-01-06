@@ -44,11 +44,11 @@ class Bird {
         // 載入三張小鳥圖片
         this.frames = [];
         this.frames[0] = new Image();
-        this.frames[0].src = "images/bird_up.png"; // 路徑
+        this.frames[0].src = "bird_up.png"; // 路徑
         this.frames[1] = new Image();
-        this.frames[1].src = "images/bird_mid.png";
+        this.frames[1].src = "bird_mid.png";
         this.frames[2] = new Image();
-        this.frames[2].src = "images/bird_down.png";
+        this.frames[2].src = "bird_down.png";
 
         // 設定一個幀索引 (從0開始)
         this.frameIndex = 0;
@@ -102,9 +102,9 @@ class Pipe {
 
         // 上下水管圖片
         this.topImg = new Image();
-        this.topImg.src = "images/pipe_top.png";    
+        this.topImg.src = "pipe_top.png";    
         this.bottomImg = new Image();
-        this.bottomImg.src = "images/pipe_bottom.png";
+        this.bottomImg.src = "pipe_bottom.png";
     }
 
     update() {
