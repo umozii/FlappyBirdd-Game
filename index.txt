@@ -21,6 +21,6 @@
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-    <script src="flappy_bird.js"></script>
+    <script src="flapB.js"></script>
 </body>
 </html>
