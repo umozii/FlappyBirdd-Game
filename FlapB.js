@@ -96,7 +96,9 @@ class Bird {
 class Pipe {
     constructor() {
         this.x = WIDTH;
+		// 隨機生成上下水管之間的間距
         this.gap = Math.floor(Math.random() * (MAX_PIPE_GAP - MIN_PIPE_GAP + 1)) + MIN_PIPE_GAP;
+		// 隨機決定上方水管的高度
         this.height = Math.floor(Math.random() * (HEIGHT - this.gap - 100)) + 100;
         this.speed = 2.5; // 調整此值控制速度，例如設為 3 表示較慢的移動速度
 
@@ -112,10 +114,10 @@ class Pipe {
     }
 
     draw() {
-        // 1. 上水管
+        // 1. 上水管 位置,固定在最上面,寬度,高度
         ctx.drawImage(this.topImg, this.x, 0, PIPE_WIDTH, this.height);
 
-        // 2. 下水管
+        // 2. 下水管 上水管底 + 間距
         const bottomY = this.height + this.gap;
         const bottomHeight = HEIGHT - bottomY;
         ctx.drawImage(this.bottomImg, this.x, bottomY, PIPE_WIDTH, bottomHeight);
@@ -124,18 +126,18 @@ class Pipe {
 
 // Initialize game objects
 const bird = new Bird();
-const pipes = [];
+const pipes = []; // 所有水管的陣列
 let score = 0;
 let highScore = 0;
-let frameCount = 0;
+let frameCount = 0; // 跑了多少幀
 
 // Utility functions
 function resetGame() {
-    bird.y = HEIGHT / 2;
-    bird.vel = 0;
+    bird.y = HEIGHT / 2; // 位置重設到畫面中間
+    bird.vel = 0; // 重設速度
     pipes.length = 0;
     score = 0;
-    frameCount = 0;
+    frameCount = 0; // 幀數歸零
     state = STATES.START;
 }
 
@@ -262,6 +264,7 @@ function gameLoop() {
         }
 
         // Collision detection
+		// === 碰撞偵測 ===
         let collision = false;
         pipes.forEach((pipe) => {
             if (
@@ -304,6 +307,7 @@ function gameLoop() {
 }
 
 // Event listeners
+// === 鍵盤控制 ===
 document.addEventListener("keydown", (e) => {
     if (state === STATES.START && e.code === "Enter") {
         state = STATES.COUNTDOWN;
@@ -336,6 +340,7 @@ document.addEventListener("keydown", (e) => {
 //         resetGame();
 //     }
 // });
+// === 滑鼠 / 觸控 ===
 canvas.addEventListener("pointerdown", (e) => {
     // optional:  e.preventDefault(); // 防止手機或平板的預設行為(捲動/縮放)
     // 確認pointerType
